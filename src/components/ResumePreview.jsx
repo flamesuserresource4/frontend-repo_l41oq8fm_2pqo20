@@ -14,6 +14,10 @@ const fontMap = {
   'ibm-plex-sans': 'font-ibm',
 };
 
+const SectionTitle = ({ children, color }) => (
+  <h3 className={`text-sm font-semibold uppercase tracking-wide ${colorMap[color]}`}>{children}</h3>
+);
+
 const TemplateClean = ({ data, color, font }) => (
   <div className={`p-6 md:p-8 bg-white text-slate-800 ${fontMap[font] || ''}`}>
     <div className="flex items-start gap-4">
@@ -27,14 +31,14 @@ const TemplateClean = ({ data, color, font }) => (
 
     {data.summary && (
       <section className="mt-4">
-        <h3 className={`text-sm font-semibold uppercase tracking-wide ${colorMap[color]}`}>Summary</h3>
+        <SectionTitle color={color}>Summary</SectionTitle>
         <p className="text-sm leading-relaxed mt-1 whitespace-pre-wrap">{data.summary}</p>
       </section>
     )}
 
     {data.experience.length > 0 && (
       <section className="mt-4">
-        <h3 className={`text-sm font-semibold uppercase tracking-wide ${colorMap[color]}`}>Experience</h3>
+        <SectionTitle color={color}>Experience</SectionTitle>
         <div className="mt-1 space-y-3">
           {data.experience.map((e, i) => (
             <div key={i}>
@@ -55,7 +59,7 @@ const TemplateClean = ({ data, color, font }) => (
 
     {data.education.length > 0 && (
       <section className="mt-4">
-        <h3 className={`text-sm font-semibold uppercase tracking-wide ${colorMap[color]}`}>Education</h3>
+        <SectionTitle color={color}>Education</SectionTitle>
         <div className="mt-1 space-y-2">
           {data.education.map((e, i) => (
             <div key={i} className="text-sm">
@@ -70,7 +74,7 @@ const TemplateClean = ({ data, color, font }) => (
 
     {data.skills.length > 0 && (
       <section className="mt-4">
-        <h3 className={`text-sm font-semibold uppercase tracking-wide ${colorMap[color]}`}>Skills</h3>
+        <SectionTitle color={color}>Skills</SectionTitle>
         <div className="mt-1 flex flex-wrap gap-2">
           {data.skills.map((s, i) => (
             <span key={i} className={`inline-flex items-center px-2 py-1 rounded border text-xs ${
@@ -83,7 +87,7 @@ const TemplateClean = ({ data, color, font }) => (
 
     {data.achievements.length > 0 && (
       <section className="mt-4">
-        <h3 className={`text-sm font-semibold uppercase tracking-wide ${colorMap[color]}`}>Achievements</h3>
+        <SectionTitle color={color}>Achievements</SectionTitle>
         <ul className="list-disc ml-5 mt-1 text-sm space-y-1">
           {data.achievements.map((a, i) => (
             <li key={i}>{a}</li>
@@ -98,7 +102,7 @@ const ResumePreview = forwardRef(({ data, template, color, font }, ref) => {
   const Component = useMemo(() => {
     switch (template) {
       case 'elegant':
-        return TemplateClean; // reuse clean for now with styling controlled by color/font
+        return TemplateClean; // placeholder for variant styling
       case 'bold':
         return TemplateClean;
       default:

@@ -63,7 +63,7 @@ const EditorPanel = ({ data, setData }) => {
   };
 
   return (
-    <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4 md:p-6 max-h-[70vh] overflow-auto">
+    <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4 md:p-6 max-h-[70vh] overflow-auto shadow-sm">
       <SectionHeader title="Personal Details" />
       <div className="grid grid-cols-2 gap-2">
         <input value={data.name} onChange={(e)=>update('name', e.target.value)} placeholder="Full name" className="input" />
@@ -73,7 +73,7 @@ const EditorPanel = ({ data, setData }) => {
         <input value={data.location} onChange={(e)=>update('location', e.target.value)} placeholder="Location" className="input col-span-2" />
       </div>
       <div className="mt-3">
-        <label className="flex items-center gap-2 text-xs text-slate-500">
+        <label className="flex items-center gap-2 text-xs text-slate-500 cursor-pointer">
           <Upload className="w-4 h-4" /> Upload photo
           <input type="file" accept="image/*" className="hidden" onChange={(e)=>{
             const file = e.target.files?.[0];
@@ -130,7 +130,7 @@ const EditorPanel = ({ data, setData }) => {
                   </button>
                 </div>
               ))}
-              <div className="flex gap-2">
+              <div className="flex gap-3">
                 <button onClick={()=>{
                   setData(prev=>{ const list=[...prev.experience]; const bullets=[...list[i].bullets, '']; list[i]={...list[i], bullets}; return {...prev, experience:list};});
                 }} className="text-xs text-emerald-600">Add bullet</button>

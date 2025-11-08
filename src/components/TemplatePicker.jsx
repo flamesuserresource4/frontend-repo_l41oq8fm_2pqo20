@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, Layout, Palette } from 'lucide-react';
+import { Sparkles, Layout, Palette, Type } from 'lucide-react';
 
 const templates = [
   { id: 'clean', name: 'Clean', desc: 'Minimal, ATS-friendly' },
@@ -16,10 +16,13 @@ const colors = [
 
 const TemplatePicker = ({ selectedTemplate, setSelectedTemplate, color, setColor, font, setFont }) => {
   return (
-    <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4 md:p-6">
-      <div className="flex items-center gap-2 mb-4">
-        <Layout className="w-4 h-4 text-slate-500" />
-        <h3 className="font-medium">Templates</h3>
+    <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4 md:p-6 shadow-sm">
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-2">
+          <Layout className="w-4 h-4 text-slate-500" />
+          <h3 className="font-medium">Templates</h3>
+        </div>
+        <span className="text-xs text-slate-500">Choose a style</span>
       </div>
       <div className="grid grid-cols-3 gap-2 md:gap-3">
         {templates.map(t => (
@@ -27,7 +30,7 @@ const TemplatePicker = ({ selectedTemplate, setSelectedTemplate, color, setColor
             key={t.id}
             onClick={() => setSelectedTemplate(t.id)}
             className={`group rounded-lg border text-left p-3 hover:shadow-sm transition ${
-              selectedTemplate === t.id ? 'border-slate-900 dark:border-white' : 'border-slate-200 dark:border-slate-800'
+              selectedTemplate === t.id ? 'border-slate-900 dark:border-white ring-1 ring-slate-900/10 dark:ring-white/10' : 'border-slate-200 dark:border-slate-800'
             }`}
           >
             <div className="text-sm font-medium">{t.name}</div>
@@ -37,9 +40,12 @@ const TemplatePicker = ({ selectedTemplate, setSelectedTemplate, color, setColor
       </div>
 
       <div className="mt-6">
-        <div className="flex items-center gap-2 mb-3">
-          <Palette className="w-4 h-4 text-slate-500" />
-          <h3 className="font-medium">Accent color</h3>
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-2">
+            <Palette className="w-4 h-4 text-slate-500" />
+            <h3 className="font-medium">Accent color</h3>
+          </div>
+          <span className="text-xs text-slate-500">Make it yours</span>
         </div>
         <div className="flex items-center gap-2">
           {colors.map(c => (
@@ -55,9 +61,12 @@ const TemplatePicker = ({ selectedTemplate, setSelectedTemplate, color, setColor
       </div>
 
       <div className="mt-6">
-        <div className="flex items-center gap-2 mb-3">
-          <Sparkles className="w-4 h-4 text-slate-500" />
-          <h3 className="font-medium">Font</h3>
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-2">
+            <Type className="w-4 h-4 text-slate-500" />
+            <h3 className="font-medium">Font</h3>
+          </div>
+          <span className="text-xs text-slate-500">Typography</span>
         </div>
         <select
           value={font}
@@ -69,6 +78,10 @@ const TemplatePicker = ({ selectedTemplate, setSelectedTemplate, color, setColor
           <option value="manrope">Manrope</option>
           <option value="ibm-plex-sans">IBM Plex Sans</option>
         </select>
+      </div>
+
+      <div className="mt-6 rounded-lg bg-slate-50 dark:bg-slate-800/50 p-3 text-xs text-slate-600 dark:text-slate-300">
+        Pro tip: keep headings consistent and align dates to the right for quick scanning.
       </div>
     </div>
   );
