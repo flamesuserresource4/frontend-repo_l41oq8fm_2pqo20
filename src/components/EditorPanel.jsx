@@ -87,7 +87,7 @@ const EditorPanel = ({ data, setData }) => {
 
       <div className="mt-6">
         <SectionHeader title="Summary" />
-        <textarea value={data.summary} onChange={(e)=>update('summary', e.target.value)} placeholder="Professional summary" className="input h-24" />
+        <textarea value={data.summary} onChange={(e)=>update('summary', e.target.value)} placeholder="Professional summary" className="input h-28 leading-relaxed" />
         <button
           onClick={async ()=>{
             try {
@@ -130,7 +130,7 @@ const EditorPanel = ({ data, setData }) => {
                   </button>
                 </div>
               ))}
-              <div className="flex gap-3">
+              <div className="flex flex-wrap gap-3">
                 <button onClick={()=>{
                   setData(prev=>{ const list=[...prev.experience]; const bullets=[...list[i].bullets, '']; list[i]={...list[i], bullets}; return {...prev, experience:list};});
                 }} className="text-xs text-emerald-600">Add bullet</button>

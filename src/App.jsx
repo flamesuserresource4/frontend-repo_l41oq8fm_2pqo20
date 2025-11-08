@@ -90,7 +90,7 @@ const App = () => {
                   </button>
                 </div>
                 <div className="grid grid-cols-3 gap-2">
-                  <button onClick={()=>download('pdf')} className="btn bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:opacity-90">
+                  <button onClick={()=>download('pdf')} className="btn btn-primary">
                     <Download className="w-4 h-4" /> PDF
                   </button>
                   <button onClick={()=>download('docx')} className="btn">
@@ -124,10 +124,78 @@ const App = () => {
         </div>
       </div>
 
+      {/* Global component-level styles without Tailwind @apply to ensure they work at runtime */}
       <style>{`
-        .input { @apply w-full rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/40; }
-        .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 dark:border-slate-800 px-3 py-2 text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition active:scale-[0.98]; }
-        .icon-btn { @apply inline-flex items-center justify-center rounded-md border border-slate-200 dark:border-slate-800 p-2 hover:bg-slate-50 dark:hover:bg-slate-800; }
+        .input {
+          width: 100%;
+          border-radius: 0.5rem; /* rounded-lg */
+          border: 1px solid rgb(226 232 240); /* slate-200 */
+          background: white;
+          color: rgb(15 23 42); /* slate-900 */
+          padding: 0.5rem 0.75rem; /* px-3 py-2 */
+          font-size: 0.875rem; /* text-sm */
+          line-height: 1.25rem;
+          transition: box-shadow 150ms, border-color 150ms, background-color 150ms, color 150ms;
+        }
+        .input:focus {
+          outline: none;
+          box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.25); /* ring-emerald-500/40 */
+          border-color: rgb(16 185 129);
+        }
+        .input::placeholder { color: rgb(100 116 139); /* slate-500 */ }
+        .input[disabled] { opacity: 0.6; cursor: not-allowed; }
+        .input.is-invalid { border-color: rgb(244 63 94); box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.2); }
+        .dark .input {
+          background: rgb(2 6 23); /* slate-950 ~ dark bg */
+          color: rgb(226 232 240); /* slate-200 */
+          border-color: rgb(30 41 59); /* slate-800 */
+        }
+        .dark .input:focus {
+          box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.25);
+          border-color: rgb(52 211 153); /* emerald-400 */
+        }
+
+        .btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          border-radius: 0.5rem; /* rounded-lg */
+          border: 1px solid rgb(226 232 240); /* slate-200 */
+          padding: 0.5rem 0.75rem; /* px-3 py-2 */
+          font-size: 0.875rem; /* text-sm */
+          line-height: 1.25rem;
+          background: white;
+          color: rgb(15 23 42);
+          transition: transform 120ms ease, background-color 150ms ease, border-color 150ms ease, opacity 150ms;
+        }
+        .btn:hover { background: rgb(248 250 252); /* slate-50 */ }
+        .btn:active { transform: scale(0.98); }
+        .dark .btn { background: rgb(2 6 23); color: rgb(226 232 240); border-color: rgb(30 41 59); }
+        .dark .btn:hover { background: rgb(30 41 59); }
+
+        .btn-primary {
+          background: rgb(15 23 42); /* slate-900 */
+          color: white;
+          border-color: rgb(15 23 42);
+        }
+        .btn-primary:hover { opacity: 0.9; }
+        .dark .btn-primary { background: white; color: rgb(15 23 42); border-color: white; }
+
+        .icon-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0.5rem;
+          border-radius: 0.375rem; /* rounded-md */
+          border: 1px solid rgb(226 232 240);
+          background: white;
+          transition: background-color 150ms ease, border-color 150ms ease;
+        }
+        .icon-btn:hover { background: rgb(248 250 252); }
+        .dark .icon-btn { background: rgb(2 6 23); border-color: rgb(30 41 59); }
+        .dark .icon-btn:hover { background: rgb(30 41 59); }
+
         .font-inter { font-family: Inter, ui-sans-serif, system-ui, -apple-system; }
         .font-geist { font-family: Geist, ui-sans-serif, system-ui, -apple-system; }
         .font-manrope { font-family: Manrope, ui-sans-serif, system-ui, -apple-system; }
